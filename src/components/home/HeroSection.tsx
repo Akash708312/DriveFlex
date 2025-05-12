@@ -27,7 +27,8 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/explore">
               <Button 
-                className="bg-brand-500 hover:bg-brand-600 text-white px-8 py-6 rounded-md text-lg font-medium"
+                variant="outline"
+                className="border-brand-300 text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
               >
                 Browse Cars
               </Button>
@@ -35,7 +36,7 @@ const HeroSection = () => {
             <Link to="/about">
               <Button 
                 variant="outline" 
-                className="border-brand-700 bg-transparent text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
+                className="border-brand-300 text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
               >
                 Learn More
               </Button>
