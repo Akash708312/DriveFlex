@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const CtaSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-brand-800 to-brand-600 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-r from-brand-800 to-brand-700 text-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
         <div className="absolute -top-[25%] -right-[10%] w-[40%] aspect-square rounded-full bg-brand-500/20 blur-3xl"></div>
@@ -33,7 +33,7 @@ const CtaSection = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20 hover:text-white px-8"
+                  className="border-brand-300 text-white hover:bg-brand-600/50 px-8"
                 >
                   Contact Us
                 </Button>

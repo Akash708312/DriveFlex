@@ -35,7 +35,7 @@ const HeroSection = () => {
             <Link to="/about">
               <Button 
                 variant="outline" 
-                className="border-white text-white hover:bg-white/20 hover:text-white px-8 py-6 rounded-md text-lg font-medium"
+                className="border-brand-700 bg-transparent text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
               >
                 Learn More
               </Button>

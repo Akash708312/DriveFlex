@@ -5,6 +5,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import FeatureSection from "@/components/home/FeatureSection";
 import Testimonials from "@/components/home/Testimonials";
 import CtaSection from "@/components/home/CtaSection";
+import AdvancedFeatures from "@/components/home/AdvancedFeatures";
 import { useEffect } from "react";
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
       <HeroSection />
       <FeaturedCars />
       <HowItWorks />
+      <AdvancedFeatures />
       <FeatureSection />
       <Testimonials />
       <CtaSection />
