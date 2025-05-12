@@ -35,7 +35,7 @@ const HeroSection = () => {
             <Link to="/about">
               <Button 
                 variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-6 rounded-md text-lg font-medium"
+                className="border-white text-white hover:bg-white/20 hover:text-white px-8 py-6 rounded-md text-lg font-medium"
               >
                 Learn More
               </Button>
@@ -62,7 +62,7 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160">
           <path
-            fill="#f9fafb"
+            fill="#111827"
             fillOpacity="1"
             d="M0,96L48,85.3C96,75,192,53,288,64C384,75,480,117,576,117.3C672,117,768,75,864,64C960,53,1056,75,1152,90.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>

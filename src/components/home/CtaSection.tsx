@@ -33,7 +33,7 @@ const CtaSection = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-brand-700 px-8"
+                  className="border-white text-white hover:bg-white/20 hover:text-white px-8"
                 >
                   Contact Us
                 </Button>

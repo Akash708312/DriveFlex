@@ -2,6 +2,7 @@
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedCars from "@/components/home/FeaturedCars";
 import HowItWorks from "@/components/home/HowItWorks";
+import FeatureSection from "@/components/home/FeatureSection";
 import Testimonials from "@/components/home/Testimonials";
 import CtaSection from "@/components/home/CtaSection";
 import { useEffect } from "react";
@@ -13,10 +14,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-gray-900 text-white">
       <HeroSection />
       <FeaturedCars />
       <HowItWorks />
+      <FeatureSection />
       <Testimonials />
       <CtaSection />
     </div>
