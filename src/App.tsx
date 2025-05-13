@@ -17,9 +17,11 @@ import NotFound from "./pages/NotFound";
 // Components
 import Layout from "./components/layout/Layout";
 
-const queryClient = new QueryClient();
-
+// Create the App component
 const App = () => {
+  // Initialize QueryClient inside the component
+  const queryClient = new QueryClient();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
