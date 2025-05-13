@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { useLeadForm } from "@/hooks/use-lead-form";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
@@ -18,6 +19,7 @@ const Auth = () => {
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const { submitLead: submitLoginLead, isLoading: isLoginLeadLoading } = useLeadForm("login");
   
   // Registration form state
   const [registerName, setRegisterName] = useState("");
@@ -25,6 +27,8 @@ const Auth = () => {
   const [registerPhone, setRegisterPhone] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(true);
+  const { submitLead: submitRegisterLead, isLoading: isRegisterLeadLoading } = useLeadForm("register");
   
   // Forgot password form state
   const [forgotEmail, setForgotEmail] = useState("");
@@ -37,9 +41,12 @@ const Auth = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    
+    // Capture lead information first
+    await submitLoginLead({ email: loginEmail });
     
     // Simulate API call
     setTimeout(() => {
@@ -52,7 +59,7 @@ const Auth = () => {
     }, 1000);
   };
   
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -66,6 +73,14 @@ const Auth = () => {
     }
     
     setIsLoading(true);
+    
+    // Capture lead information
+    await submitRegisterLead({
+      full_name: registerName,
+      email: registerEmail,
+      phone: registerPhone,
+      is_subscribed: isSubscribed
+    });
     
     // Simulate API call
     setTimeout(() => {
@@ -223,7 +238,7 @@ const Auth = () => {
                     <Button 
                       type="submit" 
                       className="w-full bg-brand-600 hover:bg-brand-700"
-                      disabled={isLoading}
+                      disabled={isLoading || isLoginLeadLoading}
                     >
                       {isLoading ? "Signing in..." : "Sign in"}
                     </Button>
@@ -359,11 +374,25 @@ const Auth = () => {
                     </label>
                   </div>
                   
+                  <div className="flex items-center">
+                    <input
+                      id="subscribe"
+                      name="subscribe"
+                      type="checkbox"
+                      checked={isSubscribed}
+                      onChange={(e) => setIsSubscribed(e.target.checked)}
+                      className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                    />
+                    <label htmlFor="subscribe" className="ml-2 block text-sm text-gray-600">
+                      Subscribe to newsletter for updates and offers
+                    </label>
+                  </div>
+                  
                   <div>
                     <Button 
                       type="submit" 
                       className="w-full bg-brand-600 hover:bg-brand-700"
-                      disabled={isLoading}
+                      disabled={isLoading || isRegisterLeadLoading}
                     >
                       {isLoading ? "Creating account..." : "Create Account"}
                     </Button>

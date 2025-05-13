@@ -1,8 +1,27 @@
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useLeadForm } from "@/hooks/use-lead-form";
 
 const HeroSection = () => {
+  const [email, setEmail] = useState("");
+  const { submitLead, isLoading } = useLeadForm("hero");
+  const [showForm, setShowForm] = useState(false);
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      const success = await submitLead({ email });
+      if (success) {
+        setEmail("");
+        setShowForm(false);
+      }
+    }
+  };
+  
   return (
     <div className="relative bg-gradient-to-r from-gray-900 to-gray-800 min-h-[92vh] flex items-center">
       {/* Background overlay with pattern */}
@@ -24,24 +43,68 @@ const HeroSection = () => {
             Choose from our premium selection of vehicles, from luxury sports 
             cars to reliable SUVs, and hit the road with confidence.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/explore">
-              <Button 
-                variant="outline"
-                className="border-brand-300 text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
-              >
-                Browse Cars
-              </Button>
-            </Link>
-            <Link to="/about">
-              <Button 
-                variant="outline" 
-                className="border-brand-300 text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
-              >
-                Learn More
-              </Button>
-            </Link>
-          </div>
+          
+          {showForm ? (
+            <form onSubmit={handleSubmit} className="mb-6 bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm border border-gray-700">
+              <div className="mb-4">
+                <Label htmlFor="email" className="text-white">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  type="submit" 
+                  disabled={isLoading} 
+                  className="bg-brand-600 hover:bg-brand-500 text-white"
+                >
+                  {isLoading ? "Sending..." : "Get Updates"}
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="outline"
+                  onClick={() => setShowForm(false)}
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </form>
+          ) : (
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+              <Link to="/explore">
+                <Button 
+                  variant="outline"
+                  className="border-brand-300 text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
+                >
+                  Browse Cars
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button 
+                  variant="outline" 
+                  className="border-brand-300 text-brand-400 hover:bg-brand-900/50 px-8 py-6 rounded-md text-lg font-medium"
+                >
+                  Learn More
+                </Button>
+              </Link>
+            </div>
+          )}
+          
+          <Button 
+            onClick={() => setShowForm(true)} 
+            variant="link" 
+            className="text-brand-300 hover:text-brand-200 pl-0"
+            disabled={showForm}
+          >
+            Get email updates on new models →
+          </Button>
         </div>
         
         {/* Hero Car Image */}
